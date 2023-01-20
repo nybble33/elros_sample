@@ -7,4 +7,4 @@ import cms.models as c_m
 class CountrySerializer(serializers.ModelSerializer):
     class Meta:
         model = c_m.Country
-        fields = ('id', 'name')
+        fields = '__all__'# ('id', 'name')
