@@ -25,6 +25,7 @@ class Manufacturer(models.Model):
         'Country',
         on_delete=models.CASCADE,
         verbose_name='страна производитель',
+        related_name='manufacturer_set',
         )
 
     class Meta:
