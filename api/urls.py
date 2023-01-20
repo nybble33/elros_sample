@@ -7,5 +7,6 @@ import api.views as a_v
 
 
 urlpatterns = [
-    path(r'country/', a_v.country),
+    # ~path(r'country/', a_v.country),
+    path(r'country/', a_v.CountryView.as_view()),
 ]
