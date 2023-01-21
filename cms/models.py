@@ -44,7 +44,8 @@ class Vehicle(models.Model):
     manufacturer = models.ForeignKey(
         'Manufacturer',
         on_delete=models.CASCADE,
-        verbose_name='производитель'
+        verbose_name='производитель',
+        related_name='vehicle_set',
         )
     start_year = models.IntegerField('год начала выпуска')
     end_year = models.IntegerField('год окончания выпуска')
