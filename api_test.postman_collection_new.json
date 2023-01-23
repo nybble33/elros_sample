@@ -1,0 +1,534 @@
+{
+	"info": {
+		"_postman_id": "f3a16417-6b7a-46c8-b7e0-428459b43ab5",
+		"name": "api_test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17658153"
+	},
+	"item": [
+		{
+			"name": "get country",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://elros.nybble.ru/api/country/?id=1",
+					"protocol": "http",
+					"host": [
+						"elros",
+						"nybble",
+						"ru"
+					],
+					"path": [
+						"api",
+						"country",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change_country",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://elros.nybble.ru/api/country/?id=1&name=Myanma",
+					"protocol": "http",
+					"host": [
+						"elros",
+						"nybble",
+						"ru"
+					],
+					"path": [
+						"api",
+						"country",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						},
+						{
+							"key": "name",
+							"value": "Myanma"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_country",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://elros.nybble.ru/api/country/?name=Laos",
+					"protocol": "http",
+					"host": [
+						"elros",
+						"nybble",
+						"ru"
+					],
+					"path": [
+						"api",
+						"country",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Laos"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete country",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://elros.nybble.ru/api/country/?name=Laos",
+					"protocol": "http",
+					"host": [
+						"elros",
+						"nybble",
+						"ru"
+					],
+					"path": [
+						"api",
+						"country",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Laos"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "export counrty to xml",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "get manufacturer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://elros.nybble.ru/api/manufacturer/?id=1",
+					"protocol": "http",
+					"host": [
+						"elros",
+						"nybble",
+						"ru"
+					],
+					"path": [
+						"api",
+						"manufacturer",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change manufacturer",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://elros.nybble.ru/api/manufacturer/?id=1&name=MgangaNew Ltd.",
+					"protocol": "http",
+					"host": [
+						"elros",
+						"nybble",
+						"ru"
+					],
+					"path": [
+						"api",
+						"manufacturer",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						},
+						{
+							"key": "name",
+							"value": "MgangaNew Ltd."
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create manufacturer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://elros.nybble.ru/api/manufacturer/?name=Babuino Motors&country=4",
+					"protocol": "http",
+					"host": [
+						"elros",
+						"nybble",
+						"ru"
+					],
+					"path": [
+						"api",
+						"manufacturer",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Babuino Motors"
+						},
+						{
+							"key": "country",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete manufacturer",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://elros.nybble.ru/api/manufacturer/?id=3",
+					"protocol": "http",
+					"host": [
+						"elros",
+						"nybble",
+						"ru"
+					],
+					"path": [
+						"api",
+						"manufacturer",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get vehicle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://elros.nybble.ru/api/vehicle/?id=1",
+					"protocol": "http",
+					"host": [
+						"elros",
+						"nybble",
+						"ru"
+					],
+					"path": [
+						"api",
+						"vehicle",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change vehicle",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://elros.nybble.ru/api/vehicle/?id=1&name=Ho Shi Min 15&start_year=2000&end_year=2010&manufacturer=1",
+					"protocol": "http",
+					"host": [
+						"elros",
+						"nybble",
+						"ru"
+					],
+					"path": [
+						"api",
+						"vehicle",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						},
+						{
+							"key": "name",
+							"value": "Ho Shi Min 15"
+						},
+						{
+							"key": "start_year",
+							"value": "2000"
+						},
+						{
+							"key": "end_year",
+							"value": "2010"
+						},
+						{
+							"key": "manufacturer",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create vehicle",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://elros.nybble.ru/api/vehicle/?name=Sharkin yankee&start_year=2000&end_year=2010&manufacturer=1",
+					"protocol": "http",
+					"host": [
+						"elros",
+						"nybble",
+						"ru"
+					],
+					"path": [
+						"api",
+						"vehicle",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Sharkin yankee"
+						},
+						{
+							"key": "start_year",
+							"value": "2000"
+						},
+						{
+							"key": "end_year",
+							"value": "2010"
+						},
+						{
+							"key": "manufacturer",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete vehicle",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://elros.nybble.ru/api/vehicle/?id=4",
+					"protocol": "http",
+					"host": [
+						"elros",
+						"nybble",
+						"ru"
+					],
+					"path": [
+						"api",
+						"vehicle",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get comment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://elros.nybble.ru/api/comment/?id=3",
+					"protocol": "http",
+					"host": [
+						"elros",
+						"nybble",
+						"ru"
+					],
+					"path": [
+						"api",
+						"comment",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add comment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://elros.nybble.ru/api/comment/?author_email=mnn@asd.qw&vehicle=1&post_date=2022-01-01&text=Cry for nothing",
+					"protocol": "http",
+					"host": [
+						"elros",
+						"nybble",
+						"ru"
+					],
+					"path": [
+						"api",
+						"comment",
+						""
+					],
+					"query": [
+						{
+							"key": "author_email",
+							"value": "mnn@asd.qw"
+						},
+						{
+							"key": "vehicle",
+							"value": "1"
+						},
+						{
+							"key": "post_date",
+							"value": "2022-01-01"
+						},
+						{
+							"key": "text",
+							"value": "Cry for nothing"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change comment",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://elros.nybble.ru/api/comment/?id=4&author_email=tyh@qwe.we&post_date=2021-01-01&vehicle=1&text=Changed comment",
+					"protocol": "http",
+					"host": [
+						"elros",
+						"nybble",
+						"ru"
+					],
+					"path": [
+						"api",
+						"comment",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						},
+						{
+							"key": "author_email",
+							"value": "tyh@qwe.we"
+						},
+						{
+							"key": "post_date",
+							"value": "2021-01-01"
+						},
+						{
+							"key": "vehicle",
+							"value": "1"
+						},
+						{
+							"key": "text",
+							"value": "Changed comment"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete comment",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://elros.nybble.ru/api/comment/?id=4",
+					"protocol": "http",
+					"host": [
+						"elros",
+						"nybble",
+						"ru"
+					],
+					"path": [
+						"api",
+						"comment",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
