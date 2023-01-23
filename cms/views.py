@@ -9,7 +9,9 @@ def country(request, country_id):
     context = {}
     _country = c_m.Country.objects.get(pk=country_id)
     context['country'] = _country
-    context['manufacturer_list'] = c_m.Manufacturer.objects.filter(country=_country)
+    context['manufacturer_list'] = c_m.Manufacturer.objects.filter(
+                                country=_country
+                                )
     return render(request, 'cms/country.html', context)
 
 

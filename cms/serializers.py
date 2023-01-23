@@ -16,9 +16,17 @@ class VehicleSerializer(serializers.ModelSerializer):
         many=True,
         read_only=True,
         )
+
     class Meta:
         model = c_m.Vehicle
-        fields = ('id', 'name', 'manufacturer', 'start_year', 'end_year', 'comments')
+        fields = (
+            'id',
+            'name',
+            'manufacturer',
+            'start_year',
+            'end_year',
+            'comments'
+            )
 
     def validate(self, data):
         if data['start_year'] > data['end_year']:
@@ -27,6 +35,7 @@ class VehicleSerializer(serializers.ModelSerializer):
 
 
 class ManufacturerSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = c_m.Manufacturer
         fields = ('id', 'name', 'country')
@@ -38,6 +47,7 @@ class CountrySerializer(serializers.ModelSerializer):
         many=True,
         read_only=True,
         )
+
     class Meta:
         model = c_m.Country
         fields = ('id', 'name', 'manufacturers')

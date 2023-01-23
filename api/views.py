@@ -2,8 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from django.core import serializers
-# from rest_framework.decorators import api_view
+from json2xml import json2xml
 from rest_framework.views import APIView
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
@@ -12,13 +11,16 @@ from django.http import HttpResponse, JsonResponse
 import cms.serializers as c_s
 import cms.models as c_m
 
+
 class CountryView(APIView):
 
     def get(self, request):
         context = {}
         try:
-            _country_object = c_m.Country.objects.get(pk=request.query_params['id'])
-        except c_m.Country.DoesNotExist: 
+            _country_object = c_m.Country.objects.get(
+                                pk=request.query_params['id']
+                                )
+        except c_m.Country.DoesNotExist:
             return JsonResponse(
                 {'result': 'The country does not exist'},
                 )
@@ -26,6 +28,11 @@ class CountryView(APIView):
             _country_object
         ).data
         context['country'] = _country
+        if 'export' in request.query_params:
+            if request.query_params['export'] == 'xml':
+                _c = c_m.Country.objects.all()
+                _export_response = json2xml.Json2xml(_country).to_xml()
+                return HttpResponse(_export_response)
         return Response(context)
 
     def post(self, request):
@@ -60,7 +67,7 @@ class CountryView(APIView):
         context = {}
         try:
             _country = c_m.Country.objects.get(pk=request.query_params['id'])
-        except c_m.Country.DoesNotExist: 
+        except c_m.Country.DoesNotExist:
             return JsonResponse(
                 {'result': 'The country does not exist'},
                 )
@@ -77,7 +84,7 @@ class ManufacturerView(APIView):
             _manufacturer_object = c_m.Manufacturer.objects.get(
                                             pk=request.query_params['id']
                                             )
-        except c_m.Manufacturer.DoesNotExist: 
+        except c_m.Manufacturer.DoesNotExist:
             return JsonResponse(
                 {'result': 'The manufacturer does not exist'},
                 )
@@ -105,7 +112,7 @@ class ManufacturerView(APIView):
             _manufacturer_object = c_m.Manufacturer.objects.get(
                                             pk=request.query_params['id']
                                             )
-        except c_m.Manufacturer.DoesNotExist: 
+        except c_m.Manufacturer.DoesNotExist:
             return JsonResponse(
                 {'result': 'The manufacturer does not exist'},
                 )
@@ -123,7 +130,7 @@ class ManufacturerView(APIView):
         context = {}
         try:
             _manufacturer = c_m.Manufacturer.objects.get(pk=request.query_params['id'])
-        except c_m.Manufacturer.DoesNotExist: 
+        except c_m.Manufacturer.DoesNotExist:
             return JsonResponse(
                 {'result': 'The manufacturer does not exist'},
                 )
@@ -140,7 +147,7 @@ class VehicleView(APIView):
             _vehicle_object = c_m.Vehicle.objects.get(
                                             pk=request.query_params['id']
                                             )
-        except c_m.Vehicle.DoesNotExist: 
+        except c_m.Vehicle.DoesNotExist:
             return JsonResponse(
                 {'result': 'The manufacturer does not exist'},
                 )
@@ -168,7 +175,7 @@ class VehicleView(APIView):
             _vehicle_object = c_m.Vehicle.objects.get(
                                             pk=request.query_params['id']
                                             )
-        except c_m.Vehicle.DoesNotExist: 
+        except c_m.Vehicle.DoesNotExist:
             return JsonResponse(
                 {'result': 'The vehicle does not exist'},
                 )
@@ -186,7 +193,7 @@ class VehicleView(APIView):
         context = {}
         try:
             _vehicle = c_m.Vehicle.objects.get(pk=request.query_params['id'])
-        except c_m.Vehicle.DoesNotExist: 
+        except c_m.Vehicle.DoesNotExist:
             return JsonResponse(
                 {'result': 'The vehicle does not exist'},
                 )
@@ -203,7 +210,7 @@ class CommentView(APIView):
             _comment_object = c_m.Comment.objects.get(
                                             pk=request.query_params['id']
                                             )
-        except c_m.Comment.DoesNotExist: 
+        except c_m.Comment.DoesNotExist:
             return JsonResponse(
                 {'result': 'The comment does not exist'},
                 )
@@ -231,7 +238,7 @@ class CommentView(APIView):
             _comment_object = c_m.Comment.objects.get(
                                             pk=request.query_params['id']
                                             )
-        except c_m.Comment.DoesNotExist: 
+        except c_m.Comment.DoesNotExist:
             return JsonResponse(
                 {'result': 'The comment does not exist'},
                 )
@@ -249,7 +256,7 @@ class CommentView(APIView):
         context = {}
         try:
             _comment_object = c_m.Comment.objects.get(pk=request.query_params['id'])
-        except c_m.Comment.DoesNotExist: 
+        except c_m.Comment.DoesNotExist:
             return JsonResponse(
                 {'result': 'The comment does not exist'},
                 )

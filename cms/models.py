@@ -32,8 +32,8 @@ class Manufacturer(models.Model):
         )
 
     class Meta:
-        verbose_name='производитель'
-        verbose_name_plural='производители'
+        verbose_name = 'производитель'
+        verbose_name_plural = 'производители'
 
     def __unicode__(self):
         return self.name
@@ -57,8 +57,8 @@ class Vehicle(models.Model):
     end_year = models.IntegerField('год окончания выпуска')
 
     class Meta:
-        verbose_name='автомобиль'
-        verbose_name_plural='автомобили'
+        verbose_name = 'автомобиль'
+        verbose_name_plural = 'автомобили'
 
     def __unicode__(self):
         return self.name
@@ -79,8 +79,8 @@ class Comment(models.Model):
     text = models.CharField('текст комментария', max_length=255)
 
     class Meta:
-        verbose_name='комментарий'
-        verbose_name_plural='комментарии'
+        verbose_name = 'комментарий'
+        verbose_name_plural = 'комментарии'
 
     def __unicode__(self):
         return ' | '.join((self.vehicle.name, str(self.post_date)))
