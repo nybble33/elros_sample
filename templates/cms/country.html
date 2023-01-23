@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block extra_head %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/static/js/local_vue.js"></script>
+<script>
+    window.current_country = {
+        id:{{ country.id }},
+        name:"{{ country.name }}"
+    };
+    window.csrf_token = "{{ csrf_token }}";
+</script>
+{% endblock %}
+{% block content %}
+<h2>Country dialog</h2>
+<!-- <p>{{ csrf_token }}</p>-->
+<div id="country-app">
+    <country-choose></country-choose>
+</div>
+<div>
+    <h4>Current country {{ country.name }}</h4>
+    {% if manufacturer_list %}
+        <p>Cars companies</p>
+        <ul>
+        {% for manufacturer in manufacturer_list %}
+            <li><a href="{{ manufacturer.url }}">{{ manufacturer.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No manufaturers in this country detected</p>
+    {% endif %}
+</div>
+
+{% endblock %}
+{% block extra_bottom %}
+{% verbatim %}
+<script>
+
+axios.defaults.headers.common = {
+    'X-Requested-With': 'XMLHttpRequest',
+    'X-CSRF-TOKEN': window.csrf_token
+};
+const country_choose = Vue.component('country-choose',{
+    data() {
+        return {
+            cur_country: {id: window.current_country.id, name: window.current_country.name},
+        }
+    },
+    template: `
+        <div>
+            <form @submit.prevent=get_country>
+                <input v-model=cur_country.id />
+                <input type='submit' value='GET COUNTRY DATA' />
+            </form>
+            <form id='set country' @submit.prevent=set_country>
+                <input v-model=cur_country.name />
+                <input type='submit' value='SET COUNTRY DATA' />
+            </form>
+            <p>
+                <button @click=del_country value='DELETE THIS COUNTRY'>
+                    DELETE THIS COUNTRY
+                </button><br><br>
+                <button @click=add_country value='+ ADD NEW'>
+                    + ADD NEW
+                </button>
+            </p>
+        </div>
+    `,
+    methods: {
+        del_country() {
+            console.log('Deleting this country');
+        },
+        add_country() {
+            console.log('Adding new country');
+        },
+        set_country() {
+            axios({
+                url: '/api/country/',
+                method: 'put',
+                headers: {"X-CSRFToken": window.csrf_token},
+                params: {
+                    id: this.cur_country.id,
+                    name: this.cur_country.name,
+                },
+            })
+            .then(result => {console.log(result.data)})
+            .catch(result => console.log('error'));
+        },
+        get_country() {
+            this.cur_country.name = '+++';
+            axios.get('/api/country/', {
+                params:{
+                    id: this.cur_country.id
+                }
+            })
+            .then(result => {
+                console.log(result.data.country.name);
+                this.cur_country = result.data.country;
+            })
+            .catch(result => console.log('error'));
+        },
+    }
+})
+
+new Vue({
+    el: "#country-app",
+})
+
+</script>
+{% endverbatim %}
+{% endblock %}

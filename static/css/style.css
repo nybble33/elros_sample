@@ -1,0 +1,9 @@
+#wrapper{
+    width: 1000px;
+    margin: auto;
+    background-color: #b3e5fc;
+    padding: 50px 20px;
+}
+.logo{
+    text-decoration: none;
+}

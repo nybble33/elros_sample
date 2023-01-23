@@ -2,10 +2,15 @@
 <html>
 <head>
     <title>ElRos code sample</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+{% block extra_head %}{% endblock %}
 </head>
 <body>
-<h1>Header 1 in base.html</h1>
+    <div id="wrapper">
+        <h1><a class="logo" href="/">ElRos code sample</a></h1>
 {% block content %}
 {% endblock %}
+    </div>
 </body>
+{% block extra_bottom %}{% endblock %}
 </html>

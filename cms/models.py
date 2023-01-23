@@ -18,6 +18,9 @@ class Country(models.Model):
     def __str__(self):
         return self.name
 
+    def url(self):
+        return f'/country/{self.id}'
+
 
 class Manufacturer(models.Model):
     name = models.CharField('название', max_length=25)
@@ -37,6 +40,9 @@ class Manufacturer(models.Model):
 
     def __str__(self):
         return self.name
+
+    def url(self):
+        return f'/manufacturer/{self.id}'
 
 
 class Vehicle(models.Model):
@@ -66,7 +72,8 @@ class Comment(models.Model):
     vehicle = models.ForeignKey(
         'Vehicle',
         on_delete=models.CASCADE,
-        verbose_name='автомобиль'
+        verbose_name='автомобиль',
+        related_name='comment_set',
         )
     post_date = models.DateField('дата создания', default=datetime.date.today)
     text = models.CharField('текст комментария', max_length=255)
@@ -76,7 +83,7 @@ class Comment(models.Model):
         verbose_name_plural='комментарии'
 
     def __unicode__(self):
-        return ' | '.join((self.name, post_date))
+        return ' | '.join((self.vehicle.name, str(self.post_date)))
 
     def __str__(self):
-        return ' | '.join((self.name, post_date))
+        return ' | '.join((self.vehicle.name, str(self.post_date)))

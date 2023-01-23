@@ -2,8 +2,10 @@ from django.shortcuts import render
 
 # Create your views here.
 
+from django.core import serializers
 # from rest_framework.decorators import api_view
 from rest_framework.views import APIView
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from django.http import HttpResponse, JsonResponse
 
@@ -40,7 +42,7 @@ class CountryView(APIView):
         context = {}
         try:
             _country = c_m.Country.objects.get(pk=request.query_params['id'])
-        except c_m.Country.DoesNotExist: 
+        except c_m.Country.DoesNotExist:
             return JsonResponse(
                 {'result': 'The country does not exist'},
                 )
@@ -142,10 +144,10 @@ class VehicleView(APIView):
             return JsonResponse(
                 {'result': 'The manufacturer does not exist'},
                 )
-        _manufacturer = c_s.VehicleSerializer(
+        _vehicle = c_s.VehicleSerializer(
             _vehicle_object
         ).data
-        context['vehicle'] = _manufacturer
+        context['vehicle'] = _vehicle
         return Response(context)
 
     def post(self, request):
@@ -190,4 +192,67 @@ class VehicleView(APIView):
                 )
         _vehicle.delete()
         context['result'] = f'Vehicle {_vehicle.name} was deleted'
+        return Response(context)
+
+
+class CommentView(APIView):
+
+    def get(self, request):
+        context = {}
+        try:
+            _comment_object = c_m.Comment.objects.get(
+                                            pk=request.query_params['id']
+                                            )
+        except c_m.Comment.DoesNotExist: 
+            return JsonResponse(
+                {'result': 'The comment does not exist'},
+                )
+        _comment = c_s.CommentSerializer(
+            _comment_object
+        ).data
+        context['comment'] = _comment
+        return Response(context)
+
+    def post(self, request):
+        context = {}
+        _comment_serializer = c_s.CommentSerializer(
+                                            data=request.query_params
+                                            )
+        if _comment_serializer.is_valid(raise_exception=True):
+            _comment_serializer.save()
+            context['result'] = f'Comment from {request.query_params["author_email"]} was created'
+        else:
+            context['result'] = 'error'
+        return Response(context)
+
+    def put(self, request):
+        context = {}
+        try:
+            _comment_object = c_m.Comment.objects.get(
+                                            pk=request.query_params['id']
+                                            )
+        except c_m.Comment.DoesNotExist: 
+            return JsonResponse(
+                {'result': 'The comment does not exist'},
+                )
+        _comment_serializer = c_s.CommentSerializer(
+                _comment_object, request.query_params
+                )
+        if _comment_serializer.is_valid(raise_exception=True):
+            _comment_serializer.save()
+            context['result'] = f'Comment from {request.query_params["author_email"]} was updated'
+        else:
+            context['result'] = 'error'
+        return Response(context)
+
+    def delete(self, request):
+        context = {}
+        try:
+            _comment_object = c_m.Comment.objects.get(pk=request.query_params['id'])
+        except c_m.Comment.DoesNotExist: 
+            return JsonResponse(
+                {'result': 'The comment does not exist'},
+                )
+        _comment_object.delete()
+        context['result'] = f'Comment {request.query_params["id"]} was deleted'
         return Response(context)

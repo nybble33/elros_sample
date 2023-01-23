@@ -24,4 +24,4 @@ class CommentAdmin(admin.ModelAdmin):
 admin.site.register(c_m.Country, CountryAdmin)
 admin.site.register(c_m.Manufacturer, ManufacturerAdmin)
 admin.site.register(c_m.Vehicle, VehicleAdmin)
-admin.site.register(c_m.Comment, CountryAdmin)
+admin.site.register(c_m.Comment, CommentAdmin)
